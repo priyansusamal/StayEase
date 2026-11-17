@@ -5,7 +5,6 @@ from booking import BookingManager
 # Backend object
 manager = BookingManager()
 
-
 # ---------------- COLOURS ----------------
 
 BG = "#E4EFF6"
@@ -17,7 +16,6 @@ TEXT = "#34495E"
 GREEN = "#648B78"
 RED = "#B96B6B"
 GREY = "#718096"
-
 
 # ---------------- FUNCTIONS ----------------
 
@@ -74,7 +72,6 @@ def add_booking():
         display_bookings()
         clear_form()
 
-
 # Search Booking
 def search_booking():
 
@@ -111,7 +108,6 @@ def search_booking():
             "Error",
             "Booking not found!"
         )
-
 
 # Update Booking
 def update_booking():
@@ -166,7 +162,6 @@ def update_booking():
         display_bookings()
         clear_form()
 
-
 # Cancel Booking
 def cancel_booking():
 
@@ -203,7 +198,6 @@ def cancel_booking():
             "Booking not found!"
         )
 
-
 # Calculate Table Column Widths
 def get_column_widths():
 
@@ -225,7 +219,6 @@ def get_column_widths():
 
     return widths
 
-
 # Format Table Rows
 def format_row(values, widths):
 
@@ -233,7 +226,6 @@ def format_row(values, widths):
         str(value)[:width - 1].ljust(width)
         for value, width in zip(values, widths)
     )
-
 
 # Display All Bookings
 def display_bookings():
@@ -274,7 +266,6 @@ def display_bookings():
         text="Total Bookings: " + str(len(all_bookings))
     )
 
-
 # Select Booking from List
 def select_booking(event):
 
@@ -299,7 +290,6 @@ def select_booking(event):
             room_type.set(data["room"])
             facility.set(data["facility"])
 
-
 # Clear Form
 def clear_form():
 
@@ -313,7 +303,6 @@ def clear_form():
 
     booking_list.selection_clear(0, tk.END)
 
-
 # ---------------- MAIN WINDOW ----------------
 
 root = tk.Tk()
@@ -322,7 +311,6 @@ root.title("Hotel Room Booking System")
 root.geometry("1050x780")
 root.minsize(900, 700)
 root.configure(bg=BG)
-
 
 # ---------------- TITLE ----------------
 
@@ -337,7 +325,6 @@ title = tk.Label(
 
 title.pack(fill="x")
 
-
 subtitle = tk.Label(
     root,
     text="Manage Your Hotel Reservations",
@@ -347,7 +334,6 @@ subtitle = tk.Label(
 )
 
 subtitle.pack(pady=10)
-
 
 # ---------------- BOOKING FORM ----------------
 
@@ -364,7 +350,6 @@ form_frame.pack(
     fill="x"
 )
 
-
 tk.Label(
     form_frame,
     text="BOOKING DETAILS",
@@ -378,7 +363,6 @@ tk.Label(
     sticky="w",
     pady=10
 )
-
 
 # Label Function
 def create_label(text, row, column):
@@ -396,7 +380,6 @@ def create_label(text, row, column):
         pady=10,
         sticky="w"
     )
-
 
 # Entry Function
 def create_entry(row, column):
@@ -420,26 +403,21 @@ def create_entry(row, column):
 
     return entry
 
-
 # Booking ID
 create_label("Booking ID", 1, 0)
 booking_id = create_entry(1, 1)
-
 
 # Customer Name
 create_label("Customer Name", 1, 2)
 customer_name = create_entry(1, 3)
 
-
 # Guests
 create_label("Number of Guests", 2, 0)
 guests = create_entry(2, 1)
 
-
 # Days
 create_label("Number of Days", 2, 2)
 days = create_entry(2, 3)
-
 
 # Room Type
 create_label("Room Type", 3, 0)
@@ -470,7 +448,6 @@ room_menu.grid(
     pady=10,
     sticky="w"
 )
-
 
 # Facility
 create_label("Room Facility", 3, 2)
@@ -506,12 +483,10 @@ tk.Radiobutton(
     activebackground=WHITE
 ).pack(side="left")
 
-
 # ---------------- BUTTONS ----------------
 
 button_frame = tk.Frame(root, bg=BG)
 button_frame.pack(pady=12)
-
 
 def create_button(text, command, color, column):
 
@@ -534,13 +509,11 @@ def create_button(text, command, color, column):
         padx=5
     )
 
-
 create_button("ADD", add_booking, BLUE, 0)
 create_button("SEARCH", search_booking, GREEN, 1)
 create_button("UPDATE", update_booking, BLUE, 2)
 create_button("CANCEL", cancel_booking, RED, 3)
 create_button("CLEAR", clear_form, GREY, 4)
-
 
 # ---------------- BOOKING RECORDS ----------------
 
@@ -558,7 +531,6 @@ records_frame.pack(
     pady=10
 )
 
-
 tk.Label(
     records_frame,
     text="BOOKING RECORDS",
@@ -566,7 +538,6 @@ tk.Label(
     bg=WHITE,
     fg=BLUE
 ).pack(anchor="w", pady=5)
-
 
 total_label = tk.Label(
     records_frame,
@@ -577,7 +548,6 @@ total_label = tk.Label(
 )
 
 total_label.pack(anchor="e")
-
 
 # Table Fonts
 table_font = font.Font(
@@ -590,7 +560,6 @@ heading_font = font.Font(
     size=11,
     weight="bold"
 )
-
 
 # Column Headings
 heading = tk.Label(
@@ -605,7 +574,6 @@ heading = tk.Label(
 )
 
 heading.pack(fill="x", pady=(8, 0))
-
 
 # Listbox and Scrollbar
 list_frame = tk.Frame(records_frame, bg=LIGHT_BLUE)
@@ -639,13 +607,11 @@ booking_list.bind(
     select_booking
 )
 
-
 # Adjust Table When Window Is Resized
 booking_list.bind(
     "<Configure>",
     lambda event: display_bookings()
 )
-
 
 # ---------------- FOOTER ----------------
 
@@ -657,10 +623,8 @@ tk.Label(
     fg=GREY
 ).pack(pady=8)
 
-
 # Load Existing Bookings
 display_bookings()
-
 
 # Run Application
 root.mainloop()
